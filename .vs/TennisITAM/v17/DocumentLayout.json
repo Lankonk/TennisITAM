@@ -1,0 +1,86 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\memel\\Documents\\ITAM\\SistemaTennis\\TennisITAM\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{7F4CBC69-3D79-4228-8107-49C4B51FB703}|TennisITAM.csproj|c:\\users\\memel\\documents\\itam\\sistematennis\\tennisitam\\services\\sqlcode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7F4CBC69-3D79-4228-8107-49C4B51FB703}|TennisITAM.csproj|solutionrelative:services\\sqlcode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7F4CBC69-3D79-4228-8107-49C4B51FB703}|TennisITAM.csproj|c:\\users\\memel\\documents\\itam\\sistematennis\\tennisitam\\areas\\identity\\pages\\account\\register.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7F4CBC69-3D79-4228-8107-49C4B51FB703}|TennisITAM.csproj|solutionrelative:areas\\identity\\pages\\account\\register.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7F4CBC69-3D79-4228-8107-49C4B51FB703}|TennisITAM.csproj|c:\\users\\memel\\documents\\itam\\sistematennis\\tennisitam\\controllers\\reservacionescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7F4CBC69-3D79-4228-8107-49C4B51FB703}|TennisITAM.csproj|solutionrelative:controllers\\reservacionescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7F4CBC69-3D79-4228-8107-49C4B51FB703}|TennisITAM.csproj|c:\\users\\memel\\documents\\itam\\sistematennis\\tennisitam\\services\\emaillocal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7F4CBC69-3D79-4228-8107-49C4B51FB703}|TennisITAM.csproj|solutionrelative:services\\emaillocal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "SQLCode.cs",
+              "DocumentMoniker": "C:\\Users\\memel\\Documents\\ITAM\\SistemaTennis\\TennisITAM\\Services\\SQLCode.cs",
+              "RelativeDocumentMoniker": "Services\\SQLCode.cs",
+              "ToolTip": "C:\\Users\\memel\\Documents\\ITAM\\SistemaTennis\\TennisITAM\\Services\\SQLCode.cs",
+              "RelativeToolTip": "Services\\SQLCode.cs",
+              "ViewState": "AgIAAE0AAAAAAAAAAAAtwFwAAABuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-18T16:46:57.681Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Register.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\memel\\Documents\\ITAM\\SistemaTennis\\TennisITAM\\Areas\\Identity\\Pages\\Account\\Register.cshtml.cs",
+              "RelativeDocumentMoniker": "Areas\\Identity\\Pages\\Account\\Register.cshtml.cs",
+              "ToolTip": "C:\\Users\\memel\\Documents\\ITAM\\SistemaTennis\\TennisITAM\\Areas\\Identity\\Pages\\Account\\Register.cshtml.cs",
+              "RelativeToolTip": "Areas\\Identity\\Pages\\Account\\Register.cshtml.cs",
+              "ViewState": "AgIAAMYAAAAAAAAAAAAqwCEAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-17T16:15:08.781Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "EmailLocal.cs",
+              "DocumentMoniker": "C:\\Users\\memel\\Documents\\ITAM\\SistemaTennis\\TennisITAM\\Services\\EmailLocal.cs",
+              "RelativeDocumentMoniker": "Services\\EmailLocal.cs",
+              "ToolTip": "C:\\Users\\memel\\Documents\\ITAM\\SistemaTennis\\TennisITAM\\Services\\EmailLocal.cs",
+              "RelativeToolTip": "Services\\EmailLocal.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAzwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-17T16:12:13.444Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ReservacionesController.cs",
+              "DocumentMoniker": "C:\\Users\\memel\\Documents\\ITAM\\SistemaTennis\\TennisITAM\\Controllers\\ReservacionesController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ReservacionesController.cs",
+              "ToolTip": "C:\\Users\\memel\\Documents\\ITAM\\SistemaTennis\\TennisITAM\\Controllers\\ReservacionesController.cs",
+              "RelativeToolTip": "Controllers\\ReservacionesController.cs",
+              "ViewState": "AgIAACIAAAAAAAAAAAAQwEUAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-18T16:09:51.536Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

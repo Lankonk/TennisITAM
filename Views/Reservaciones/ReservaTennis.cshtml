@@ -1,0 +1,80 @@
+﻿@{
+    ViewData["Title"] = "Tennis";
+    ViewData["hoy"] = DateTime.Now;
+}
+@model reservacionTennis
+<h1>@ViewData["hoy"]</h1>
+<h2>Horarios bloqueados</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Dia</th>
+            <th>Horario</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Jueves</td>
+            <td>13:00 – 15:00</td>
+        </tr>
+        <tr>
+            <td>Viernes</td>
+            <td>13:00 PM – 15:00</td>
+        </tr>
+        <tr>
+            <td>Viernes</td>
+            <td>7:00-9:00</td>
+        </tr>
+    </tbody>
+</table>
+<h2>Reserva una cancha de Tennis.</h2>
+<form asp-controller="Reservaciones" asp-action="agendarCancha" method="post">
+    <div>
+        <label for="horarioInput">Selecciona el horario que quieres reservar</label>
+        <input asp-for="hReserva" type="datetime-local" id="horarioInput" name="hReserva" min=@ViewData["hoy"] presente required />
+    </div>
+    <div>
+        <label for="cbDobles">Selecciona esta caja en el caso de que vayan a jugar una partida de dobles</label>
+        <input type="checkbox" id="cbDobles" name="checkboxDobles" onchange="cambioReserva()" />
+    </div>
+<label asp-for="idU1">Clave Unica 1</label>
+<input asp-for="idU1" type="number" id="cu1" name="idU1" required readonly />
+<span asp-validation-for="idU1" class="text-danger"></span>
+<label for="cu2">Clave Unica 2</label>
+<input type="number" id="cu2" name="idU2" required/>
+<label for="cu3">Clave Unica 3</label>
+<input type="number" id="cu3" name="idU3" disabled />
+<label for="cu4">Clave Unica 4</label>
+<input type="number" id="cu4" name="idU4" disabled />
+
+<label for="canchas">Selecciona cual cancha quieres reservar</label>
+<select name="recReservado" id="canchas">
+    <option value="canchaPuerta">cancha 1 (en frente de la puerta)</option>
+    <option value="canchaEstacionamiento">cancha 2 (pegada al estacionamiento)</option>
+</select>
+<div>
+    @Html.AntiForgeryToken()
+        <button type="submit" class="btn btn-primary">Reservar Cancha</button>
+</div>
+    
+
+</form>
+<form asp-action="validacionInfo" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+    </form>
+
+<script>
+    function cambioReserva(){
+        const cb = document.getElementById("cbDobles")
+        const inputCu3 = document.getElementById("cu3")
+        const inputCu4 = document.getElementById("cu4")
+        
+        if(cb instanceof HTMLInputElement && inputCu3 instanceof HTMLInputElement && inputCu4 instanceof HTMLInputElement){
+            inputCu3.value = null;
+            inputCu4.value = null;
+            inputCu3.disabled = !cb.checked;
+            inputCu4.disabled = !cb.checked;
+        }
+    }
+</script>
