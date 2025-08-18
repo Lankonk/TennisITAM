@@ -423,12 +423,6 @@ C:\Users\memel\Documents\ITAM\SistemaTennis\TennisITAM\obj\Debug\net9.0\compress
 C:\Users\memel\Documents\ITAM\SistemaTennis\TennisITAM\obj\Debug\net9.0\staticwebassets.build.json
 C:\Users\memel\Documents\ITAM\SistemaTennis\TennisITAM\obj\Debug\net9.0\staticwebassets.development.json
 C:\Users\memel\Documents\ITAM\SistemaTennis\TennisITAM\obj\Debug\net9.0\staticwebassets.build.endpoints.json
-C:\Users\memel\Documents\ITAM\SistemaTennis\TennisITAM\obj\Debug\net9.0\staticwebassets\msbuild.TennisITAM.Microsoft.AspNetCore.StaticWebAssets.props
-C:\Users\memel\Documents\ITAM\SistemaTennis\TennisITAM\obj\Debug\net9.0\staticwebassets\msbuild.TennisITAM.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
-C:\Users\memel\Documents\ITAM\SistemaTennis\TennisITAM\obj\Debug\net9.0\staticwebassets\msbuild.build.TennisITAM.props
-C:\Users\memel\Documents\ITAM\SistemaTennis\TennisITAM\obj\Debug\net9.0\staticwebassets\msbuild.buildMultiTargeting.TennisITAM.props
-C:\Users\memel\Documents\ITAM\SistemaTennis\TennisITAM\obj\Debug\net9.0\staticwebassets\msbuild.buildTransitive.TennisITAM.props
-C:\Users\memel\Documents\ITAM\SistemaTennis\TennisITAM\obj\Debug\net9.0\staticwebassets.pack.json
 C:\Users\memel\Documents\ITAM\SistemaTennis\TennisITAM\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
 C:\Users\memel\Documents\ITAM\SistemaTennis\TennisITAM\obj\Debug\net9.0\TennisITAM.csproj.Up2Date
 C:\Users\memel\Documents\ITAM\SistemaTennis\TennisITAM\obj\Debug\net9.0\TennisITAM.dll
@@ -436,3 +430,9 @@ C:\Users\memel\Documents\ITAM\SistemaTennis\TennisITAM\obj\Debug\net9.0\refint\T
 C:\Users\memel\Documents\ITAM\SistemaTennis\TennisITAM\obj\Debug\net9.0\TennisITAM.pdb
 C:\Users\memel\Documents\ITAM\SistemaTennis\TennisITAM\obj\Debug\net9.0\TennisITAM.genruntimeconfig.cache
 C:\Users\memel\Documents\ITAM\SistemaTennis\TennisITAM\obj\Debug\net9.0\ref\TennisITAM.dll
+C:\Users\memel\Documents\ITAM\SistemaTennis\TennisITAM\obj\Debug\net9.0\rpswa.dswa.cache.json
+C:\Users\memel\Documents\ITAM\SistemaTennis\TennisITAM\obj\Debug\net9.0\TennisITAM.sourcelink.json
+C:\Users\memel\Documents\ITAM\SistemaTennis\TennisITAM\obj\Debug\net9.0\rjimswa.dswa.cache.json
+C:\Users\memel\Documents\ITAM\SistemaTennis\TennisITAM\obj\Debug\net9.0\rjsmrazor.dswa.cache.json
+C:\Users\memel\Documents\ITAM\SistemaTennis\TennisITAM\obj\Debug\net9.0\rjsmcshtml.dswa.cache.json
+C:\Users\memel\Documents\ITAM\SistemaTennis\TennisITAM\obj\Debug\net9.0\staticwebassets.build.json.cache

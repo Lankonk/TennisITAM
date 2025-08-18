@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using NuGet.Packaging.Rules;
 using System.Threading.Tasks;
 using TennisITAM.Models;
 using TennisITAM.Services;
@@ -70,6 +71,10 @@ namespace TennisITAM.Controllers
         }
 
         public IActionResult StatusReserva()
+        {
+            return View();
+        }
+        public IActionResult cancelarReserva()
         {
             return View();
         }

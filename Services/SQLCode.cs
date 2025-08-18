@@ -121,7 +121,7 @@ namespace TennisITAM.Services
         private static async Task<(bool disp, string msg)> canchaLibres(SqlConnection c, string cancha, DateTime dtOriginal)//solo determina que esa cancha en especifico no este reservada
         {
             bool disponible = true;
-            DateTime hQuerida = dtOriginal.AddHours(-1.0).AddSeconds(1.0);
+            DateTime hQuerida = dtOriginal.AddHours(-1.5).AddSeconds(1.0);
             DateTime termina = hQuerida.AddHours(2.0).AddSeconds(-2.0);
             int idRec = await getidRecReservado(cancha);
             SqlCommand cmd = new SqlCommand(String.Format("SELECT id_reservacion FROM reservacion_cancha WHERE (hora_reservada BETWEEN @start AND @end) AND cancha_reservada = @cancha;"), c);
@@ -166,11 +166,11 @@ namespace TennisITAM.Services
             c.Close();
             return res;
         }
-        private static async Task<(bool disp, string msg)> problemasHorarios(DateTime t)//false si no hay problemas
+        private static async Task<(bool disp, string msg)> problemasHorarios(DateTime t,bool doubles)//false si no hay problemas
         {
             bool existenProblemas = false;
-            bool bloqueoTot = horarioBloqueoTotal(t);
-            var bloqueoParcial = await horarioBloqueoParcial(t);
+            bool bloqueoTot = horarioBloqueoTotal(t,doubles);
+            var bloqueoParcial = await horarioBloqueoParcial(t,doubles);
             if (bloqueoTot || bloqueoParcial)
                 existenProblemas = true;
 
@@ -179,25 +179,45 @@ namespace TennisITAM.Services
             else
                 return (existenProblemas, string.Empty);
         }
-        private static bool horarioBloqueoTotal(DateTime t)
+        private static bool horarioBloqueoTotal(DateTime t, bool doubles)
         {
             TimeSpan temp = t.TimeOfDay;
             bool bloqueado = false;
 
-            if (t < DateTime.Now || temp >= new TimeSpan(22, 0, 0) || temp <= new TimeSpan(7, 0, 0))
+            if (doubles)//se reservaron doubles, entonces la partida dura 1.5 horas
             {
-                bloqueado = true;
-            }
-            if (t.DayOfWeek == DayOfWeek.Thursday && (temp >= new TimeSpan(13, 0, 0) && temp < new TimeSpan(15, 0, 0)))
-            {
-                bloqueado = true;
-            }
+                if (t < DateTime.Now || temp >= new TimeSpan(22, 00, 0) || temp <= new TimeSpan(7, 0, 0))
+                {
+                    bloqueado = true;
+                }
+                if (t.DayOfWeek == DayOfWeek.Thursday && (temp > new TimeSpan(11, 30, 0) && temp < new TimeSpan(15, 0, 0)))
+                {
+                    bloqueado = true;
+                }
 
-            if (t.DayOfWeek == DayOfWeek.Friday && (temp >= new TimeSpan(13, 0, 0) && temp < new TimeSpan(15, 0, 0)))
-            {
-                bloqueado = true;
-            }
+                if (t.DayOfWeek == DayOfWeek.Friday && (temp > new TimeSpan(11, 30, 0) && temp < new TimeSpan(15, 0, 0)))
+                {
+                    bloqueado = true;
+                }
 
+                
+            }
+            else// no se reservaron doubles, entonces dura solo 1 hora
+            {
+                if (t < DateTime.Now || temp >= new TimeSpan(22, 0, 0) || temp <= new TimeSpan(7, 0, 0))
+                {
+                    bloqueado = true;
+                }
+                if (t.DayOfWeek == DayOfWeek.Thursday && (temp > new TimeSpan(12, 0, 0) && temp < new TimeSpan(15, 0, 0)))
+                {
+                    bloqueado = true;
+                }
+
+                if (t.DayOfWeek == DayOfWeek.Friday && (temp > new TimeSpan(12, 0, 0) && temp < new TimeSpan(15, 0, 0)))
+                {
+                    bloqueado = true;
+                }
+            }
             if (t.DayOfWeek == DayOfWeek.Friday && (temp >= new TimeSpan(7, 0, 0) && temp < new TimeSpan(9, 0, 0)))
             {
                 bloqueado = true;
@@ -205,7 +225,7 @@ namespace TennisITAM.Services
 
             return bloqueado;
         }       
-        private static async Task<bool> horarioBloqueoParcial(DateTime dtOriginal)
+        private static async Task<bool> horarioBloqueoParcial(DateTime dtOriginal, bool doubles)
         {
             bool existenProblemas = false;
             DateTime principio = dtOriginal.AddHours(-1.0).AddSeconds(1.0);
@@ -221,7 +241,7 @@ namespace TennisITAM.Services
             
             if (principio.DayOfWeek == DayOfWeek.Monday || principio.DayOfWeek == DayOfWeek.Tuesday || principio.DayOfWeek == DayOfWeek.Wednesday)
             {
-                    if (t >= new TimeSpan(14, 0, 0) && t < new TimeSpan(16, 0, 0))
+                    if (t > new TimeSpan(13, 0, 0) && t < new TimeSpan(16, 0, 0))
                     {
                     dr = await cmd.ExecuteReaderAsync();
                     if (await dr.ReadAsync())
@@ -229,7 +249,7 @@ namespace TennisITAM.Services
                     }
                     else
                     {
-                        if (principio.DayOfWeek == DayOfWeek.Tuesday && t >= new TimeSpan(10, 0, 0) && t < new TimeSpan(12, 0, 0))
+                        if (principio.DayOfWeek == DayOfWeek.Tuesday && t > new TimeSpan(9, 0, 0) && t < new TimeSpan(12, 0, 0))
                         {
                         dr = await cmd.ExecuteReaderAsync();
                         if (await dr.ReadAsync())
@@ -240,14 +260,14 @@ namespace TennisITAM.Services
 
             if (!existenProblemas && (principio.DayOfWeek == DayOfWeek.Wednesday || principio.DayOfWeek == DayOfWeek.Thursday))
             {
-                    if (t >= new TimeSpan(7, 0, 0) && t < new TimeSpan(11, 0, 0))
+                    if (t > new TimeSpan(6, 0, 0) && t < new TimeSpan(11, 0, 0))
                     {
                     dr = await cmd.ExecuteReaderAsync();
                     if (await dr.ReadAsync())
                             existenProblemas = true;
                     }
 
-                    if (principio.DayOfWeek == DayOfWeek.Thursday && t >= new TimeSpan(11, 0, 0) && t < new TimeSpan(13, 0, 0))
+                    if (principio.DayOfWeek == DayOfWeek.Thursday && t > new TimeSpan(10, 0, 0) && t < new TimeSpan(13, 0, 0))
                     {
                     dr = await cmd.ExecuteReaderAsync();
                     if (await dr.ReadAsync())
@@ -258,7 +278,7 @@ namespace TennisITAM.Services
 
             if (!existenProblemas && principio.DayOfWeek == DayOfWeek.Friday)
             {
-                    if (t >= new TimeSpan(10, 0, 0) && t < new TimeSpan(13, 0, 0))
+                    if (t > new TimeSpan(9, 0, 0) && t < new TimeSpan(13, 0, 0))
                     {
                     dr = await cmd.ExecuteReaderAsync();
                     if (await dr.ReadAsync())
@@ -267,7 +287,7 @@ namespace TennisITAM.Services
             }
             if (!existenProblemas && principio.DayOfWeek == DayOfWeek.Saturday)
             {
-                    if (t >= new TimeSpan(8, 0, 0) && t < new TimeSpan(9, 30, 0))
+                    if (t > new TimeSpan(7, 0, 0) && t < new TimeSpan(9, 30, 0))
                     {
                     dr = await cmd.ExecuteReaderAsync();
                     if (await dr.ReadAsync())
@@ -342,7 +362,7 @@ namespace TennisITAM.Services
                 
                 SqlConnection con = await SQLCode.agregarConexion();
                 var canchaLibre = await canchaLibres(con, r.recReservado, r.hReserva);
-                var probHorarios = await problemasHorarios(r.hReserva);
+                var probHorarios = await problemasHorarios(r.hReserva, false);//false porque no se agendaron doubles
                 var claves = await checarClaves(con, r);
                 if (canchaLibre.disp && !probHorarios.disp  && claves.valido )
                 {
@@ -380,12 +400,15 @@ namespace TennisITAM.Services
         {
             bool exito = false;
             int idRecReservado = await getidRecReservado(r.recReservado), res;
-            SqlCommand cmd = new SqlCommand(String.Format("INSERT INTO reservacion_cancha (id_reservacion, id_usuario1, id_usuario2, hora_reservada, cancha_reservada) VALUES(@id,@cu1,@cu2,@hora,@idRec);"), c);
+            DateTime hFin = r.hReserva.AddHours(1.0);
+            SqlCommand cmd = new SqlCommand("INSERT INTO reservacion_cancha (id_reservacion, id_usuario1, id_usuario2, hora_reservada, cancha_reservada,hora_fin_reserva) VALUES(@id,@cu1,@cu2,@hora,@idRec,@hFin);", c);
             cmd.Parameters.AddWithValue("@id",r.Id);
             cmd.Parameters.AddWithValue("@cu1", r.idU1);
             cmd.Parameters.AddWithValue("@cu2", r.idU2);
             cmd.Parameters.AddWithValue("@hora", r.hReserva);
             cmd.Parameters.AddWithValue("@idRec", idRecReservado);
+            cmd.Parameters.AddWithValue("@hFin", hFin);
+            
             try
             {
                 res = await cmd.ExecuteNonQueryAsync();
@@ -421,7 +444,7 @@ namespace TennisITAM.Services
                 {
                     SqlConnection con = await SQLCode.agregarConexion();
                     var canchaLibre = await canchaLibres(con, r.recReservado, r.hReserva);
-                    var probHorarios = await problemasHorarios(r.hReserva);
+                    var probHorarios = await problemasHorarios(r.hReserva, true);//true porque si se agendaron doubles
                     var claves = await checarClaves(con, r);
                     if (canchaLibre.disp && !probHorarios.disp && claves.valido)
                     {
@@ -463,7 +486,8 @@ namespace TennisITAM.Services
         {
             bool exito = false;
             int idRecReservado = await getidRecReservado(r.recReservado), res;
-            SqlCommand cmd = new SqlCommand(String.Format("INSERT INTO reservacion_cancha_dobles (id_reservacion, id_usuario1, id_usuario2,id_usuario3, id_usuario4, hora_reservada, cancha_reservada) VALUES(@idRes, @cu1, @cu2, @cu3, @cu4, @hora, @cancha);"), c);
+            DateTime hFin = r.hReserva.AddHours(1.5);
+            SqlCommand cmd = new SqlCommand("INSERT INTO reservacion_cancha_dobles (id_reservacion, id_usuario1, id_usuario2,id_usuario3, id_usuario4, hora_reservada, cancha_reservada,hora_fin_reserva) VALUES(@idRes, @cu1, @cu2, @cu3, @cu4, @hora, @cancha,@hFin);", c);
             cmd.Parameters.AddWithValue("@idRes", r.Id);
             cmd.Parameters.AddWithValue("@cu1", r.idU1);
             cmd.Parameters.AddWithValue("@cu2", r.idU2);
@@ -471,6 +495,7 @@ namespace TennisITAM.Services
             cmd.Parameters.AddWithValue("@cu4", r.idU4);
             cmd.Parameters.AddWithValue("@hora", r.hReserva);
             cmd.Parameters.AddWithValue("@cancha", idRecReservado);
+            cmd.Parameters.AddWithValue("@hFin", hFin);
             try
             {
                 res = await cmd.ExecuteNonQueryAsync();
@@ -483,6 +508,9 @@ namespace TennisITAM.Services
             }
             return (exito, string.Empty);
         }
+
+        //Cancelar Reservas
+
 
         //Usuarios
 
