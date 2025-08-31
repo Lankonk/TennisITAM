@@ -2,4 +2,38 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    ViewData["Title"] = "Cancelar Reserva";
 }
+@model reservacionTennis
+
+<h1>Cancelar Reservas</h1>
+<h2>Nota: Solo puede cancelar quien agendo la reserva</h2>
+
+<form asp-controller ="Reservaciones" asp-action="cancelacionReserva" method="post">
+    <div>
+        <label for="horarioInputCancelar">Selecciona el horario de tu reserva que deseas cancelar</label>
+        <input asp-for="hReserva" type="datetime-local" id="horarioInputCancelar" name="hReserva" min=@ViewData["hoy"] se necesita ingresar una fecha valida />
+    </div>
+    <div>
+        <label for="cbDoblesCancelar">Selecciona esta caja en el caso de que tu partida reservada sea de dobles</label>
+        <input type="checkbox" id="cbDoblesCancelar" name="checkboxDoblesCancelar" value="true"/>
+        <input type="hidden" id="cbDoblesCancelar" name="checkboxDoblesCancelar" value="false" />
+    </div>
+    <label asp-for="idU1">Clave Unica Usuario</label>
+    <input asp-for="idU1" type="number" id="cu1" name="idU1" required readonly />
+    <span asp-validation-for="idU1" class="text-danger"></span>
+
+    <div>
+        <label for="canchasCancelar">Selecciona en cual cancha es tu reserva</label>
+        <select name="recReservado" id="canchasCancelar">
+            <option value="canchaPuerta">cancha 1 (en frente de la puerta)</option>
+            <option value="canchaEstacionamiento">cancha 2 (pegada al estacionamiento)</option>
+        </select>
+    </div>
+
+    <div>
+        @Html.AntiForgeryToken()
+        <button type="submit" class="btn btn-primary">Cancelar Reserva</button>
+    </div>
+</form>
+

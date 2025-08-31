@@ -511,6 +511,30 @@ namespace TennisITAM.Services
 
         //Cancelar Reservas
 
+        public static async Task<(bool exito, string errMsg)> cancelarReserva(reservacionTennis r, bool esdouble)
+        {
+            SqlConnection c = await agregarConexion();
+            SqlCommand cmd;
+            int res;
+
+            if (!esdouble)
+            {
+                cmd = new SqlCommand("DELETE FROM reservacion_cancha WHERE id_usuario1 = @id AND hora_reservada = @hRes",c);
+            }
+            else
+            {
+                cmd = new SqlCommand("DELETE FROM reservacion_cancha_dobles WHERE id_usuario1 = @id AND hora_reservada = @hRes",c);
+            }
+            cmd.Parameters.AddWithValue("@id", r.idU1);
+            cmd.Parameters.AddWithValue("@hRes", r.hReserva);
+
+            res = await cmd.ExecuteNonQueryAsync();
+
+            if (res == 0)
+                return (false, "No se encontro la reserva que se quiere cancelar");
+            else
+                return (true, string.Empty);
+        }
 
         //Usuarios
 

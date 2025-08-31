@@ -16,7 +16,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TennisITAM")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+98b32bfcb2515c20ba4f0ef1812d6d868bfc4cc7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+47cc07f347f1805bbcd1c08f4021405efabb4c3e")]
 [assembly: System.Reflection.AssemblyProductAttribute("TennisITAM")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TennisITAM")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

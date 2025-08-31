@@ -17,7 +17,6 @@ namespace TennisITAM.Models
         [Required(ErrorMessage = "Requerido")]
         public string recReservado { get; set; }
 
-
         public reservacionTennis()
         {
 

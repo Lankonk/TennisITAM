@@ -6,4 +6,8 @@
     <h1 class="display-4">Sistema de Reservas ITAM</h1>
     <a asp-controller="Reservaciones" asp-action="ReservaTennis" class="btn btn-primary">Reserva una cancha de Tennis</a>
     <a asp-controller="Reservaciones" asp-action="cancelarReserva" class="btn btn-primary">Cancelar una reserva</a>
+    @if(User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+    {
+        <a asp-controller="Admin" asp-action="panelAdmins" class="btn btn-primary">Controles de Administrador</a>
+    }
 </div>
